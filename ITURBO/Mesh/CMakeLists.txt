@@ -1,3 +1,11 @@
+## ------------------------------------------------------------------------------
+## Project: ITURBO
+## Copyright(c) 2026, Onur Tuncer, PhD, Istanbul Technical University
+##
+## SPDX - License - Identifier: LGPL-2.1-only
+## License - Filename: LICENSE
+## ------------------------------------------------------------------------------
+
 file(GLOB ITURBO_MESH_PUBLIC_HEADERS
     CONFIGURE_DEPENDS
     "${CMAKE_SOURCE_DIR}/include/ITURBO/Mesh/*.h"

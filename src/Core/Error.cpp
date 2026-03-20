@@ -1,7 +1,14 @@
+// ------------------------------------------------------------------------------
+// Project: ITURBO
+// Copyright(c) 2026, Onur Tuncer, PhD, Istanbul Technical University
+//
+// SPDX - License - Identifier: LGPL-2.1-only
+// License - Filename: LICENSE
+// ------------------------------------------------------------------------------
 
-#include "TurboCFD/Core/Error.h"
+#include "ITURBO/Core/Error.h"
 
-namespace TurboCFD::Core {
+namespace ITURBO::Core {
 
     Error::Error(ErrorCode code, std::string message)
         : m_Code(code)
