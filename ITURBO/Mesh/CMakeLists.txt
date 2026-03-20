@@ -3,7 +3,7 @@ file(GLOB ITURBO_MESH_PUBLIC_HEADERS
     "${CMAKE_SOURCE_DIR}/include/ITURBO/Mesh/*.h"
 )
 
-file(GLOB TURBOCFD_MESH_PRIVATE_HEADERS
+file(GLOB ITURBO_MESH_PRIVATE_HEADERS
     CONFIGURE_DEPENDS
     "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
 )
@@ -14,19 +14,19 @@ file(GLOB TURBOCFD_MESH_SOURCES
 )
 
 add_library(turbocfd_mesh
-    ${TURBOCFD_MESH_PUBLIC_HEADERS}
-    ${TURBOCFD_MESH_PRIVATE_HEADERS}
-    ${TURBOCFD_MESH_SOURCES}
+    ${ITURBO_MESH_PUBLIC_HEADERS}
+    ${ITURBO_MESH_PRIVATE_HEADERS}
+    ${ITURBO_MESH_SOURCES}
 )
 
-add_library(TurboCFD::Mesh ALIAS turbocfd_mesh)
+add_library(ITurbo::Mesh ALIAS iturbo_mesh)
 
-target_link_libraries(turbocfd_mesh
+target_link_libraries(iturbo_mesh
     PUBLIC
-        TurboCFD::ProjectOptions
-        TurboCFD::Warnings
-        TurboCFD::Sanitizers
-        TurboCFD::Core
+        Turbo::ProjectOptions
+        Turbo::Warnings
+        Turbo::Sanitizers
+        Turbo::Core
 )
 
 target_include_directories(turbocfd_mesh
@@ -38,15 +38,15 @@ target_include_directories(turbocfd_mesh
         ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-target_compile_features(turbocfd_mesh PUBLIC cxx_std_23)
+target_compile_features(iturbo_mesh PUBLIC cxx_std_23)
 
-target_compile_definitions(turbocfd_mesh
+target_compile_definitions(iturbo_mesh
     PRIVATE
-        TURBOCFD_MESH_BUILD
+        ITURBO_MESH_BUILD
 )
 
-set_target_properties(turbocfd_mesh PROPERTIES
-    OUTPUT_NAME turbocfd_mesh
+set_target_properties(iturbo_mesh PROPERTIES
+    OUTPUT_NAME iturbo_mesh
     EXPORT_NAME Mesh
     WINDOWS_EXPORT_ALL_SYMBOLS ON
     FOLDER "src/Mesh"
@@ -67,7 +67,7 @@ source_group(
 )
 
 install(
-    TARGETS turbocfd_mesh
+    TARGETS turbo_mesh
     EXPORT TurboCFDTargets
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
