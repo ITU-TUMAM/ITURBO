@@ -14,3 +14,7 @@ FetchContent_Declare(
     GIT_TAG        v3.5.2
 )
 FetchContent_MakeAvailable(catch2)
+
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/Mesh/CMakeLists.txt")
+    add_subdirectory(Mesh)
+endif()

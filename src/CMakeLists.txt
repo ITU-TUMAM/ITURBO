@@ -25,7 +25,7 @@ set(ITURBO_SRC_MODULES
     Parallel
 )
 
-foreach(module IN LISTS TURBOCFD_SRC_MODULES)
+foreach(module IN LISTS ITURBO_SRC_MODULES)
     if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${module}/CMakeLists.txt")
         add_subdirectory("${module}")
     else()

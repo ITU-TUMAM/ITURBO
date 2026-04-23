@@ -6,9 +6,11 @@
 ## License - Filename: LICENSE
 ## ------------------------------------------------------------------------------
 
+# src/Mesh/CMakeLists.txt
+
 file(GLOB ITURBO_MESH_PUBLIC_HEADERS
     CONFIGURE_DEPENDS
-    "${CMAKE_SOURCE_DIR}/include/ITURBO/Mesh/*.h"
+    "${CMAKE_SOURCE_DIR}/ITURBO/Mesh/*.h"
 )
 
 file(GLOB ITURBO_MESH_PRIVATE_HEADERS
@@ -16,30 +18,30 @@ file(GLOB ITURBO_MESH_PRIVATE_HEADERS
     "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
 )
 
-file(GLOB TURBOCFD_MESH_SOURCES
+file(GLOB ITURBO_MESH_SOURCES
     CONFIGURE_DEPENDS
     "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
 )
 
-add_library(turbocfd_mesh
+add_library(iturbo_mesh
     ${ITURBO_MESH_PUBLIC_HEADERS}
     ${ITURBO_MESH_PRIVATE_HEADERS}
     ${ITURBO_MESH_SOURCES}
 )
 
-add_library(ITurbo::Mesh ALIAS iturbo_mesh)
+add_library(ITURBO::Mesh ALIAS iturbo_mesh)
 
 target_link_libraries(iturbo_mesh
     PUBLIC
-        Turbo::ProjectOptions
-        Turbo::Warnings
-        Turbo::Sanitizers
-        Turbo::Core
+        ITURBO::ProjectOptions
+        ITURBO::Warnings
+        ITURBO::Sanitizers
+        ITURBO::Core
 )
 
-target_include_directories(turbocfd_mesh
+target_include_directories(iturbo_mesh
     PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}>
         $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}/generated>
         $<INSTALL_INTERFACE:include>
     PRIVATE
@@ -61,29 +63,29 @@ set_target_properties(iturbo_mesh PROPERTIES
 )
 
 source_group(
-    TREE "${CMAKE_SOURCE_DIR}/include"
+    TREE "${CMAKE_SOURCE_DIR}/ITURBO"
     PREFIX "Header Files"
-    FILES ${TURBOCFD_MESH_PUBLIC_HEADERS}
+    FILES ${ITURBO_MESH_PUBLIC_HEADERS}
 )
 
 source_group(
     TREE "${CMAKE_CURRENT_SOURCE_DIR}"
     PREFIX "Source Files"
     FILES
-        ${TURBOCFD_MESH_PRIVATE_HEADERS}
-        ${TURBOCFD_MESH_SOURCES}
+        ${ITURBO_MESH_PRIVATE_HEADERS}
+        ${ITURBO_MESH_SOURCES}
 )
 
 install(
-    TARGETS turbo_mesh
-    EXPORT TurboCFDTargets
+    TARGETS iturbo_mesh
+    EXPORT ITURBOTargets
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
 install(
-    DIRECTORY "${CMAKE_SOURCE_DIR}/include/TurboCFD/Mesh/"
-    DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/TurboCFD/Mesh"
+    DIRECTORY "${CMAKE_SOURCE_DIR}/ITURBO/Mesh/"
+    DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/ITURBO/Mesh"
     FILES_MATCHING PATTERN "*.h"
 )

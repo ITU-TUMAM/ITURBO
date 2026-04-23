@@ -174,7 +174,7 @@ target_link_libraries(iturbo_project_options
         Threads::Threads
 )
 
-if(TURBOCFD_ENABLE_OPENMP AND OpenMP_CXX_FOUND)
+if(ITURBO_ENABLE_OPENMP AND OpenMP_CXX_FOUND)
     target_link_libraries(iturbo_project_options
         INTERFACE
             OpenMP::OpenMP_CXX
@@ -192,9 +192,9 @@ endif()
 target_compile_definitions(iturbo_project_options
     INTERFACE
         $<$<BOOL:${ITURBO_ENABLE_MPI}>:ITURBO_USE_MPI=1>
-        $<$<BOOL:${ITURBO_ENABLE_OPENMP}>:TURBOCFD_USE_OPENMP=1>
-        $<$<BOOL:${ITURBO_ENABLE_PETSC}>:TURBOCFD_USE_PETSC=1>
-        $<$<BOOL:${ITURBO_ENABLE_CGNS}>:TURBOCFD_USE_CGNS=1>
+        $<$<BOOL:${ITURBO_ENABLE_OPENMP}>:ITURBO_USE_OPENMP=1>
+        $<$<BOOL:${ITURBO_ENABLE_PETSC}>:ITURBO_USE_PETSC=1>
+        $<$<BOOL:${ITURBO_ENABLE_CGNS}>:ITURBO_USE_CGNS=1>
 )
 
 # ------------------------------------------------------------------------------
@@ -283,8 +283,8 @@ endif()
 if(ITURBO_ENABLE_TESTS)
     include(CTest)
     enable_testing()
-    if(EXISTS "${CMAKE_SOURCE_DIR}/tests/CMakeLists.txt")
-        add_subdirectory(tests)
+    if(EXISTS "${CMAKE_SOURCE_DIR}/test/CMakeLists.txt")
+        add_subdirectory(test)
     endif()
 endif()
 
